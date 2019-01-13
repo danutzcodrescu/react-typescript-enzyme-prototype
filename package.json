@@ -14,11 +14,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose=false",
     "eject": "react-scripts eject",
     "lint": "tslint --project .",
     "format": "prettier --ignore-path .gitignore \"src/**/*.{tsx,ts,json}\" --list-different",
-    "format-fix": "prettier --ignore-path .gitignore \"src/**/*.{tsx,ts,json,css}\""
+    "format-fix": "prettier --ignore-path .gitignore \"src/**/*.{tsx,ts,json,css}\"",
+    "test-ci": "CI=true react-scripts test --verbose=false"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,12 +31,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/axios-mock-adapter": "^1.10.0",
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^23.3.12",
     "@types/lodash": "^4.14.119",
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-router-dom": "^4.3.1",
+    "axios-mock-adapter": "^1.16.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "husky": "^1.3.1",
     "prettier": "^1.15.3",
     "tslint": "^5.12.1",
@@ -45,7 +52,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn format"
+      "pre-commit": "yarn lint && yarn format",
+      "pre-push": "yarn test-ci"
     }
   }
 }

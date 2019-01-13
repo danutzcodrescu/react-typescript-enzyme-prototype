@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { PlanetService } from '../services/planet.service';
@@ -66,15 +66,16 @@ export class PlanetContainer extends React.Component<Props, State> {
         <Card style={{ padding: '10px' }}>
           <Typography variant="h1">{planet!.name}</Typography>
           {this._displayedProps.map(key => (
-            <>
-              <Typography component="p">
-                {key}:{' '}
-                {typeof planet![key] === 'number'
-                  ? planet![key].toLocaleString()
-                  : planet![key]}
-              </Typography>
-              <br />
-            </>
+            <Typography
+              component="p"
+              style={{ marginBottom: '15px' }}
+              key={key}
+            >
+              {key}:{' '}
+              {typeof planet![key] === 'number'
+                ? planet![key].toLocaleString()
+                : planet![key]}
+            </Typography>
           ))}
           <Typography>
             Created: {planet!.created.toLocaleDateString()}
@@ -87,3 +88,5 @@ export class PlanetContainer extends React.Component<Props, State> {
     );
   }
 }
+
+export const PlanetCont = withRouter(PlanetContainer);

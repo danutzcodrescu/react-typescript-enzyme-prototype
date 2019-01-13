@@ -4,7 +4,7 @@ import { Planet } from '../models/planet.model';
 import { PlanetService } from '../services/planet.service';
 import { TableComponent } from '../components/table.component';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 import { ErrorComponent } from '../components/error.component';
 import * as vars from '../config/variables.json';
 
@@ -76,3 +76,5 @@ export class PlanetsContainer extends React.Component<Props, State> {
     );
   }
 }
+
+export const Planets = withRouter(PlanetsContainer);

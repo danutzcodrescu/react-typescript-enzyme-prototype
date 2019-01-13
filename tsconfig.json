@@ -15,11 +15,11 @@
     "resolveJsonModule": true,
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
     "allowJs": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "isolatedModules": true
   },
   "include": [
     "src"
