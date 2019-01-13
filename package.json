@@ -1,5 +1,13 @@
 {
-  "name": "famoco",
+  "name": "create-react-app_prototype",
+  "keywords": [
+    "typescript",
+    "react",
+    "enzyme",
+    "axios",
+    "material-ui"
+  ],
+  "author": "Danut Codrescu",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

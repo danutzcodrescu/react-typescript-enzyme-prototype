@@ -3,9 +3,24 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { PlanetsContainer } from './containers/planets.container';
 import { PlanetContainer } from './containers/planet.container';
 import './App.css';
+import { ErrorComponent } from './components/error.component';
+import * as vars from './config/variables.json';
 
-class App extends Component {
+interface State {
+  error: boolean;
+}
+
+class App extends Component<{}, State> {
+  state: State = {
+    error: false
+  };
+  componentDidCatch() {
+    this.setState({ error: true });
+  }
   render() {
+    if (this.state.error) {
+      return <ErrorComponent message={vars.generalErrorMessage} />;
+    }
     return (
       <BrowserRouter>
         <>

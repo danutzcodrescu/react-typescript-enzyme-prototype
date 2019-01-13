@@ -1,3 +1,4 @@
 {
-  "apiErrorMessage": "Ooops... Something went wrong with the API call"
+  "apiErrorMessage": "Ooops... Something went wrong with the API call",
+  "generalErrorMessage": "The app is completely screwed... Major bug detected"
 }
