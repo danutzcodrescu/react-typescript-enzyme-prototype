@@ -9,8 +9,10 @@ export class Planet {
   private _climate: string;
   private _terrain: string;
   private _surface_water: string;
+  private _created: Date;
+  private _edited: Date;
 
-  [prop: string]: string | number;
+  [prop: string]: string | number | Date;
 
   constructor(
     id: string,
@@ -22,7 +24,9 @@ export class Planet {
     population: number | string,
     climate: string,
     terrain: string,
-    surface_water: string
+    surface_water: string,
+    created: Date,
+    edited: Date
   ) {
     this._id = id;
     this._name = name;
@@ -34,6 +38,8 @@ export class Planet {
     this._climate = climate;
     this._terrain = terrain;
     this._surface_water = surface_water;
+    this._created = created;
+    this._edited = edited;
   }
 
   get id() {
@@ -101,5 +107,17 @@ export class Planet {
   }
   set surface_water(surface_water: string) {
     this._surface_water = surface_water;
+  }
+  get created() {
+    return this._created;
+  }
+  set created(created: Date) {
+    this._created = created;
+  }
+  get edited() {
+    return this._edited;
+  }
+  set edited(edited: Date) {
+    this._edited = edited;
   }
 }

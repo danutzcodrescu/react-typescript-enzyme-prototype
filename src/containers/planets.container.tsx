@@ -5,6 +5,8 @@ import { PlanetService } from '../services/planet.service';
 import { TableComponent } from '../components/table.component';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { RouteComponentProps } from 'react-router';
+import { ErrorComponent } from '../components/error.component';
+import * as vars from '../config/variables.json';
 
 interface State {
   planets: Planet[];
@@ -54,7 +56,7 @@ export class PlanetsContainer extends React.Component<Props, State> {
   render() {
     const { loading, error, planets, count, page } = this.state;
     if (error) {
-      return <h1>Oups... Something went wrong</h1>;
+      return <ErrorComponent message={vars.apiErrorMessage} />;
     }
     if (loading) {
       return <CircularProgress />;
@@ -68,7 +70,7 @@ export class PlanetsContainer extends React.Component<Props, State> {
           count={count}
           page={page}
           onChangePage={this.changePage}
-          onRowClick={this.rowClick}
+          pathForDetails="/planets/"
         />
       </Paper>
     );

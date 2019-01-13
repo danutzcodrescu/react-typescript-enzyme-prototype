@@ -7,20 +7,22 @@ import TableRow from '@material-ui/core/TableRow';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import isNil from 'lodash/isNil';
+import { Link } from 'react-router-dom';
 
 interface TableData {
   id: string;
-  [key: string]: string | number;
+  [key: string]: string | number | Date;
 }
 
 interface Props<T> {
   tableProps: string[];
-  data: any[];
+  data: Array<T & TableData>;
   page: number;
   count: number;
   rowsPerPage?: number;
   onChangePage: (page: number) => void;
   onRowClick?: (id: string) => void;
+  pathForDetails?: string;
 }
 
 export class TableComponent<T> extends React.Component<Props<T>> {
@@ -57,6 +59,11 @@ export class TableComponent<T> extends React.Component<Props<T>> {
                       : row[prop]}
                   </TableCell>
                 ))}
+                {!isNil(props.pathForDetails) ? (
+                  <TableCell>
+                    <Link to={props.pathForDetails + row.id}>More details</Link>
+                  </TableCell>
+                ) : null}
               </TableRow>
             );
           })}

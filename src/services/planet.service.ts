@@ -38,11 +38,8 @@ export class PlanetService {
     };
   }
 
-  static async getPlanet(id: string, ssr: boolean = false) {
-    const resp = await axios.get(`https://swapi.co/api/planets/${id}`);
-    if (ssr) {
-      return resp.data;
-    }
+  static async getPlanet(id: string) {
+    const resp = await axios.get(this.url + id);
     return PlanetService.toPlanet(resp.data);
   }
 
@@ -58,7 +55,9 @@ export class PlanetService {
       parseInt(planet.population, 10) || planet.population,
       planet.climate,
       planet.terrain,
-      planet.surface_water
+      planet.surface_water,
+      new Date(planet.created),
+      new Date(planet.edited)
     );
   }
 }
