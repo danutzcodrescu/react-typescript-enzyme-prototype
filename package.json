@@ -18,7 +18,7 @@
     "eject": "react-scripts eject",
     "lint": "tslint --project .",
     "format": "prettier --ignore-path .gitignore \"src/**/*.{tsx,ts,json}\" --list-different",
-    "format-fix": "prettier --ignore-path .gitignore \"src/**/*.{tsx,ts,json}\""
+    "format-fix": "prettier --ignore-path .gitignore \"src/**/*.{tsx,ts,json,css}\""
   },
   "eslintConfig": {
     "extends": "react-app"
