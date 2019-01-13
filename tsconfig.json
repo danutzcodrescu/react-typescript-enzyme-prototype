@@ -13,9 +13,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "allowJs": true,
+    "skipLibCheck": true
   },
   "include": [
     "src"

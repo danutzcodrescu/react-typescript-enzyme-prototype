@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { PlanetsContainer } from './containers/planets.container';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-      </div>
+      <BrowserRouter>
+        <>
+          <Route path="/" exact={true} component={PlanetsContainer} />
+          <Route path="/planets/:id" render={() => <h1>test</h1>} />
+        </>
+      </BrowserRouter>
     );
   }
 }

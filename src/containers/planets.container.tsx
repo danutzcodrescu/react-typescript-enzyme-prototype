@@ -1,0 +1,76 @@
+import * as React from 'react';
+import Paper from '@material-ui/core/Paper';
+import { Planet } from '../models/planet.model';
+import { PlanetService } from '../services/planet.service';
+import { TableComponent } from '../components/table.component';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { RouteComponentProps } from 'react-router';
+
+interface State {
+  planets: Planet[];
+  loading: boolean;
+  error: boolean;
+  count: number;
+  page: number;
+}
+
+interface Props extends RouteComponentProps {}
+
+export class PlanetsContainer extends React.Component<Props, State> {
+  state: State = {
+    count: 0,
+    planets: [],
+    loading: true,
+    error: false,
+    page: 1
+  };
+
+  private _tableProps = ['name', 'climate', 'gravity', 'terrain', 'population'];
+  async componentDidMount() {
+    this.getPlanets();
+  }
+
+  changePage = (page: number) => {
+    this.getPlanets(page + 1);
+  };
+
+  rowClick = (id: string) => {
+    this.props.history.push(`/planets/${id}`);
+  };
+
+  async getPlanets(page = 1) {
+    try {
+      const result = await PlanetService.getPlanets(page);
+      this.setState({
+        planets: result.planets,
+        loading: false,
+        count: result.count,
+        page
+      });
+    } catch {
+      this.setState({ error: true });
+    }
+  }
+  render() {
+    const { loading, error, planets, count, page } = this.state;
+    if (error) {
+      return <h1>Oups... Something went wrong</h1>;
+    }
+    if (loading) {
+      return <CircularProgress />;
+    }
+    return (
+      <Paper>
+        <h1>Planets</h1>
+        <TableComponent
+          tableProps={this._tableProps}
+          data={planets}
+          count={count}
+          page={page}
+          onChangePage={this.changePage}
+          onRowClick={this.rowClick}
+        />
+      </Paper>
+    );
+  }
+}

@@ -1,11 +1,15 @@
 {
   "extends": [
     "tslint:recommended",
-    "tslint-react",
     "tslint-config-prettier"
   ],
   "rules": {
     "ordered-imports": false,
-    "member-access": false
+    "member-access": false,
+    "interface-name": false,
+    "member-ordering": false,
+    "object-literal-sort-keys": false,
+    "variable-name": false,
+    "no-empty-interface": false
   }
 }
