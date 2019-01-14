@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ReactWrapper, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { ErrorComponent } from '../components/error.component';
 import { PlanetCont, PlanetContainer } from '../containers/planet.container';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import { LoadingComponent } from '../components/loading.component';
 
 const planet = {
   id: '625',
@@ -34,7 +34,7 @@ describe('Containers: Planet Container', () => {
   });
 
   it('should display the loading indicator', () => {
-    expect(wrapper.find(CircularProgress)).toHaveLength(1);
+    expect(wrapper.find(LoadingComponent)).toHaveLength(1);
   });
 
   it('should display the error component', () => {
@@ -44,7 +44,7 @@ describe('Containers: Planet Container', () => {
 
   it('should display the table component', () => {
     wrapper.find(PlanetContainer).setState({ loading: false, planet });
-    expect(wrapper.find(CircularProgress)).toHaveLength(0);
+    expect(wrapper.find(LoadingComponent)).toHaveLength(0);
     expect(wrapper.find(Button)).toHaveLength(1);
     expect(wrapper.find(Card)).toHaveLength(1);
     expect(wrapper.find(Typography)).toHaveLength(11);

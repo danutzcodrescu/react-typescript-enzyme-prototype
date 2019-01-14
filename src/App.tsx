@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { PlanetsContainer } from './containers/planets.container';
-import { PlanetContainer } from './containers/planet.container';
 import './App.css';
 import { ErrorComponent } from './components/error.component';
 import * as vars from './config/variables.json';
+import { LoadingComponent } from './components/loading.component';
 
 interface State {
   error: boolean;
 }
+
+const planets = lazy(() =>
+  import(/* webpackChunkName: "PlanetsContainer" */ './containers/planets.container')
+);
+
+const planet = lazy(() =>
+  import(/* webpackChunkName: "PlanetContainer" */ './containers/planet.container')
+);
 
 class App extends Component<{}, State> {
   state: State = {
@@ -23,10 +30,10 @@ class App extends Component<{}, State> {
     }
     return (
       <BrowserRouter>
-        <>
-          <Route path="/" exact={true} component={PlanetsContainer} />
-          <Route path="/planets/:id" component={PlanetContainer} />
-        </>
+        <Suspense fallback={LoadingComponent}>
+          <Route path="/" exact={true} component={planets} />
+          <Route path="/planets/:id" component={planet} />
+        </Suspense>
       </BrowserRouter>
     );
   }

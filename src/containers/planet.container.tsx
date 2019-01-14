@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { PlanetService } from '../services/planet.service';
 import { Planet } from '../models/planet.model';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import { ErrorComponent } from '../components/error.component';
 import * as vars from '../config/variables.json';
+import { LoadingComponent } from '../components/loading.component';
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
@@ -51,7 +51,7 @@ export class PlanetContainer extends React.Component<Props, State> {
       return <ErrorComponent message={vars.apiErrorMessage} />;
     }
     if (loading) {
-      return <CircularProgress />;
+      return <LoadingComponent />;
     }
     return (
       <div>
@@ -90,3 +90,5 @@ export class PlanetContainer extends React.Component<Props, State> {
 }
 
 export const PlanetCont = withRouter(PlanetContainer);
+
+export default PlanetContainer;

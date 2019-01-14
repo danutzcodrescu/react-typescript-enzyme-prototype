@@ -3,10 +3,10 @@ import Paper from '@material-ui/core/Paper';
 import { Planet } from '../models/planet.model';
 import { PlanetService } from '../services/planet.service';
 import { TableComponent } from '../components/table.component';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ErrorComponent } from '../components/error.component';
 import * as vars from '../config/variables.json';
+import { LoadingComponent } from '../components/loading.component';
 
 interface State {
   planets: Planet[];
@@ -59,7 +59,7 @@ export class PlanetsContainer extends React.Component<Props, State> {
       return <ErrorComponent message={vars.apiErrorMessage} />;
     }
     if (loading) {
-      return <CircularProgress />;
+      return <LoadingComponent />;
     }
     return (
       <Paper>
@@ -78,3 +78,5 @@ export class PlanetsContainer extends React.Component<Props, State> {
 }
 
 export const Planets = withRouter(PlanetsContainer);
+
+export default PlanetsContainer;
