@@ -1,6 +1,6 @@
 [build]
-  publish = "build/"
-  command = "npm build"
+  publish = "./build"
+  command = "yarn build"
 
 [[redirects]]
   from = "/*"
